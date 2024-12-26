@@ -1,3 +1,12 @@
+local Ox = require '@ox_core/lib/init'
+
+RegisterNetEvent("ox_commands:setProperties", function(properties)
+    local src = source
+    local player = Ox.GetPlayer(src)
+    local vehicle = Ox.GetVehicle(GetVehiclePedIsIn(player.ped, false))
+    vehicle.setProperties(properties, true)
+end)
+
 lib.addCommand('freeze', {
     help = 'Freeze the player',
     params = {

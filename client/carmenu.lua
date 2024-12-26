@@ -1,10 +1,16 @@
 local lastVehicle
 local modLivery
+local vehicleProperties
 local menu = {
 	id = 'ox_commands:carMenu',
 	title = 'Vehicle Mods',
+	onClose = function(keyPressed)
+		TriggerServerEvent("ox_commands:setProperties", vehicleProperties)
+	end,
 	options = {}
 }
+
+
 
 function menu.onSideScroll(selected, scrollIndex)
 	local option = menu.options[selected]
@@ -19,6 +25,7 @@ function menu.onSideScroll(selected, scrollIndex)
 		end
 
 		SetVehicleMod(lastVehicle, option.modIndex, scrollIndex - 2, false)
+		vehicleProperties = lib.getVehicleProperties(lastVehicle)
 	end
 end
 
